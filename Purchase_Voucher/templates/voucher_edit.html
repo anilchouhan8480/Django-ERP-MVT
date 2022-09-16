@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+        <form method="POST">
+            {% csrf_token %}
+        <div id="page-header">
+            <h1 id="page-heading">PAYMENT VOUCHER EDIT </h1>
+        </div>
+        <div id="main-header">
+            <h1 id="main-heading">Welcome to : Chal Charkha</h1>
+        </div>
+        <div class="card mb-4">
+            <div class="card-header">
+                PAYMENT VOUCHER EDIT
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">{{form.Supplier_Name | as_crispy_field}}</div>
+                      </div>
+                    <div class="col-md-3">
+                        <div class="form-group">{{form.Tally_data | as_crispy_field}}</div>
+                      </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            {{form.Bill_No | as_crispy_field}}
+                        </div>
+                    </div>
+                      
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            {{form.Payment_amount | as_crispy_field}}
+                        </div>
+                    </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                            {{form.payment_date | as_crispy_field}}
+                  </div>
+                </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            {{form.payment_type | as_crispy_field}}
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            {{form.description | as_crispy_field}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="btn-group me-auto" role="group" aria-label="Button group with nested dropdown">
+            <button type="submit" class="btn btn-primary" >Submit</button>
+            </div>
+        </form>
+    {% endblock %}

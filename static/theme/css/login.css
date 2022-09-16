@@ -1,0 +1,76 @@
+body {
+  background: #D6D4C1;
+  background: #faf9b6;
+  font-family: 'Inter', sans-serif;
+}
+
+#container {
+
+  min-height: 800px;
+  padding: 50px;
+  background: #FFBF00;
+  background: #faf9b6;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  background: #FFBF00;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+}
+
+.card {
+ 
+  width: 50%;
+  margin-top: 5rem;
+  border-radius: 2rem;
+  padding: 2rem;
+  background-image: url(../img/chal_charkha_bg.jpeg);
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="date"] {
+  width: 100%;
+  height: 35px;
+  padding: 5px;
+  border-color: #653D3E;
+  border-width: 2px;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+  background-image: url(\theme\img\Group13.jpg);
+  background-repeat: no-repeat;
+  background-size: 90vh;
+  background-color: #faf9b6;
+  background-position: center;
+
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -20px;
+  margin-left: -25px;
+  width: 50px;
+  height: 40px;
+  text-align: center;
+  font-size: 10px;
+  position: fixed;
+}
+

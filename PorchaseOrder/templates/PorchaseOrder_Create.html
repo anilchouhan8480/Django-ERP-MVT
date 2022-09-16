@@ -1,0 +1,462 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<form method="POST">
+  {% csrf_token %}
+  <input type="hidden" name="item_count" id="item_count" value="1" />
+  <div id="page-header">
+    <h1 id="page-heading">PURCHASE ORDER</h1>
+  </div>
+  <div id="main-header">
+    <h1 id="main-heading">Welcome to : Chal Charkha</h1>
+  </div>
+  <div class="card mb-4">
+    <div class="card-header">
+      ADD PURCHASE ORDER DETAILS
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          <div class="form-group">
+            <label>Supplier Code</label>
+            <input type="text" class="form-control" name="Supplier_code" id="Supplier_code" />
+          </div>
+        </div>
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+          aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label>PO No</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label>Supplier Code</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" />
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label>Supplier Name</label>
+                        <select class="form-select" aria-label="Default select example">
+                          <option selected>Select Supplier</option>
+                          <option value="1">Supplier-name1</option>
+                          <option value="2">Supplier-name2</option>
+                          <option value="3">Supplier-name3</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label>Item Code</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                          placeholder="Enter Item Code">
+                        <small id="emailHelp" class="form-text text-muted"></small>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label>Item Name</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                          placeholder="Enter Item">
+                        <small id="emailHelp" class="form-text text-muted"></small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Search</button>
+                <button type="button" class="btn btn-primary">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Supplier Name</label>
+            <select class="form-select" aria-label="Default select example" id="cmb_supplier">
+              <option selected>Select Supplier</option>
+              {% for i in uObj %}
+              <option value="{{ i.Supplier_Code }}">{{ i.Name}}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" id="Email" />
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <label>Contact No</label>
+            <input type="text" class="form-control" id="Supplier_no" required />
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <label>State</label>
+            <input type="text" class="form-control" id="Supplier_State" required />
+            <small id="emailHelp" class="form-text text-muted"></small>
+          </div>
+        </div>
+
+
+        <div class="col-md-2">
+          <div class="form-group">
+            <label>City</label>
+            <input type="text" class="form-control" id="City" required />
+
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <label>Delivery Date</label>
+            <input type="date" name="delivery_date" class="form-control" id="exampleInputhescription1" required />
+
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label> Place Of Supply</label>
+            <select class="form-select" name="location" aria-label="Default select example" required>
+              <option selected> Place Of Supply</option>
+              {% for i in Sobj %}
+              <option value="{{i.State_Code}}">{{i.State_Name}}</option>
+
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Remark</label>
+            <input type="text" class="form-control" name="remark" id="Suppier_Remark" aria-describedby="emailHelp"
+             />
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="card mb-4">
+    <div class="card-header">
+      ITEM DETAILS
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">PO Item</th>
+            <th scope="col">Item Code</th>
+            <th scope="col">Item Name</th>
+            <th scope="col">Item Size </th>
+            <th scope="col">Item Color</th>
+            <th scope="col">Unit for Measure</th>
+            <th scope="col">Item Quantity</th>
+            <th scope="col">Item Price</th>
+            <th scope="col">GST%</th>
+            <th scope="col">Total</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody id="addItem1">
+          <tr>
+            <th>
+              <select name="item_select_0" onchange="set_item_details(0)" class="form-select auto_increment"
+                aria-label="Default select example" id="cmb_item_0" required>
+                <option selected>Select Item</option>
+                {% for j in IObj %}
+                <option value="{{ j.Item_NO }}">{{ j.Item_Name}}</option>
+                {% endfor %}
+              </select>
+            </th>
+            <th><input type="text" name="item_code_0" class="form-control mb-2 item_code" id="item_code_0" required />
+            </th>
+            <th><input type="text" name="item_name_0" class="form-control mb-2 item_Name" id="item_Name_0"></th>
+            </th>
+            <th>
+              <input type="text" name="item_size_0" class="form-control mb-2 item_size" id="item_size_0" required />
+            </th>
+            <th><input type="text" name="item_color_0" class="form-control mb-2 item_color" id="item_color_0"
+                required /></th>
+
+            <th><input type="text" name="item_unit_0" class="form-control mb-2 item_unit" id="item_unit_0" required />
+            </th>
+
+            <th><input type="text" name="item_qty_0" class="form-control mb-2 item_qty" id="item_qty_0" onkeyup="cal_total(0)" required />
+            </th>
+            <th><input type="text" name="item_price_0" class="form-control mb-2 item_price" id="item_price_0"onkeyup="cal_total(0)" required /></th>
+            <th>
+              <input type="text" name="item_gst_0" class="form-control mb-2 item_gst" id="item_gst_0" required />
+            </th>
+            <th style="width: 100px;"><input type="text" name="item_total_0" class="form-control mb-2 item_total" id="item_total_0" readonly/>
+            </th>
+            <th>
+              <button type="button" class="btn-close" aria-label="Close" onclick="myFunction()"></button>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row">
+      <div class="col-md-2">
+        <div class="form-group">
+          <button type="button" class="btn btn-primary" onclick="addItem()">Add Item</button>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+        <a href="{% url 'Item-Form' %}"  class="btn btn-primary">
+            Create Item </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+
+<script type="text/javascript">
+  $("#cmb_supplier").change(function (e) {
+    // e.preventDefault();
+    var supplier_id = document.getElementById("cmb_supplier").value;
+    // alert(supplier_id);
+    $.ajax({
+
+      type: "GET",
+      dataType: "json",
+      data: { supplier_id: supplier_id },
+      url: "http://127.0.0.1:8000/api/supplierapi/" + supplier_id,
+      success: function (result) {
+        console.log(result);
+
+        document.getElementById("Supplier_no").value = result.Mobile_NO;
+        document.getElementById("Email").value = result.Email;
+        document.getElementById("Supplier_State").value = result.state_name;
+        document.getElementById("City").value = result.City;
+        document.getElementById("Supplier_code").value = result.Supplier_Code;
+      }
+    });
+
+  });
+
+  function set_item_details(i) {
+
+    // alert(i);
+
+    var item_id = document.getElementById("cmb_item_" + i).value;
+
+    $.ajax({
+
+      type: "GET",
+      dataType: "json",
+      url: "http://127.0.0.1:8000/api/itemapi/" + item_id,
+      success: function (result) {
+        console.log(result);
+
+
+        document.getElementById("item_code_" + i).value = result.Item_NO;
+        document.getElementById("item_Name_" + i).value = result.Item_Name;
+        document.getElementById("item_size_" + i).value = result.Item_Size;
+        document.getElementById("item_color_" + i).value = result.color_name;
+        document.getElementById("item_unit_" + i).value = result.uom;
+        document.getElementById("item_gst_" + i).value = result.Item_GST;
+      }
+    });
+  }
+
+
+  function addItem() {
+    let template = `<tr>
+        <th> 
+          <select name="item_select_" class="form-select auto_increment" aria-label="Default select example" id="cmb_item_" required >
+            <option selected>Select Item</option>
+            {% for j in IObj  %}
+            <option  value="{{ j.Item_NO }}">{{ j.Item_Name}}</option>
+            {% endfor %}
+          </select>
+        </th>
+        <th>
+          <input
+            type="text" 
+            class="form-control mb-2 item_code" 
+            id="item_code_" required />
+        </th>
+        <th>
+          <input 
+            type="text" 
+            class="form-control mb-2 item_Name" 
+            id="item_Name_" required />
+        </th>
+        <th>
+          <input 
+            type="text" 
+            class="form-control mb-2 item_size" 
+            id="item_size_" required />
+        </th>
+        <th>
+          <input 
+            type="text" 
+            class="form-control mb-2 item_color" 
+            id="item_color_" required />
+        </th>
+      <th>
+          <input 
+            type="text" 
+            class="form-control mb-2 item_unit" 
+            id="item_unit_" required />
+        </th>
+        <th>
+         <input 
+            type="text" 
+            class="form-control mb-2 item_qty" 
+            id="item_qty_" onkeyup="cal_total(0)" required />
+        </th>
+        <th>
+          <input 
+            type="text" 
+            name="item_price_" 
+            class="form-control mb-2 item_price" 
+            id="item_price_" required />
+        </th>
+
+        <th><input type="text" name="item_gst_"
+           class="form-control mb-2 item_gst"
+            id="item_gst_" required />
+          </th>
+        <th style="width: 100px;">
+          <input 
+            type="text" 
+            name="item_total_" 
+            class="form-control mb-3 item_total" 
+            id="item_total_" readonly >
+        </th>
+        <th>
+          <button type="button" class="btn-close" avalue="Delete Row" onclick="RemoveRow(this)"></button>
+        </th>
+      </tr>`;
+
+    let a = document.createElement('tr');
+    a.innerHTML = template;
+    addItem1.appendChild(a);
+
+    var list = document.getElementsByClassName("auto_increment");
+    document.getElementById("item_count").value = list.length;
+
+    for (var i = 0; i < list.length; i++) {
+      list[i].setAttribute("onChange", "set_item_details(" + i + ")");
+      list[i].setAttribute("id", "cmb_item_" + i);
+      list[i].setAttribute("name", "item_select_" + i);
+    }
+
+    var list = document.getElementsByClassName("item_code");
+    for (var i = 0; i < list.length; i++) {
+      list[i].setAttribute("id", "item_code_" + i);
+      list[i].setAttribute("name","item_code_" + i);
+    }
+
+    var list = document.getElementsByClassName("item_Name");
+    for (var i = 0; i < list.length; i++) {
+
+      list[i].setAttribute("id", "item_Name_" + i);
+      list[i].setAttribute("name","item_Name_" + i);
+    }
+
+    var list = document.getElementsByClassName("item_size");
+    for (var i = 0; i < list.length; i++) {
+
+      list[i].setAttribute("id", "item_size_" + i);
+      list[i].setAttribute("name","item_size_" + i);
+    }
+
+    var list = document.getElementsByClassName("item_color");
+    for (var i = 0; i < list.length; i++) {
+
+      list[i].setAttribute("id", "item_color_" + i);
+      list[i].setAttribute("name","item_color_" + i);
+    }
+
+    var list = document.getElementsByClassName("item_unit");
+    for (var i = 0; i < list.length; i++) {
+
+      list[i].setAttribute("id", "item_unit_" + i);
+      list[i].setAttribute("name","item_unit_" + i);
+    }
+
+    var list = document.getElementsByClassName("item_gst");
+    for (var i = 0; i < list.length; i++) {
+
+      list[i].setAttribute("id", "item_gst_" + i);
+      list[i].setAttribute("name", "item_gst_" + i);
+    }
+
+    var list = document.getElementsByClassName("item_disc");
+    for (var i = 0; i < list.length; i++) {
+
+      list[i].setAttribute("id", "item_disc_" + i);
+      list[i].setAttribute("name", "item_disc_" + i);
+    }
+
+    var list = document.getElementsByClassName("item_qty");
+    for (var i = 0; i < list.length; i++) {
+
+      list[i].setAttribute("id", "item_qty_" + i);
+      list[i].setAttribute("name", "item_qty_" + i);
+      list[i].setAttribute("onkeyup", "cal_total(" + i + ")");
+    }
+
+    var list = document.getElementsByClassName("item_price");
+    for (var i = 0; i < list.length; i++) {
+      list[i].setAttribute("onkeyup", "cal_total(" + i + ")");
+      list[i].setAttribute("id", "item_price_" + i);
+      list[i].setAttribute("name", "item_price_" + i);
+    }
+
+    var list = document.getElementsByClassName("item_total");
+    for (var i = 0; i < list.length; i++) {
+      list[i].setAttribute("id", "item_total_" + i);
+      list[i].setAttribute("name", "item_total_" + i);
+    }
+
+  }
+
+</script>
+<script>
+  function RemoveRow(o) {
+     //no clue what to put here?
+     var p=o.parentNode.parentNode;
+         p.parentNode.removeChild(p);
+    }
+</script>
+<script>
+  function cal_total(i=0){
+    var Quantity = document.getElementById("item_qty_"+i).value;
+    var Price = document.getElementById("item_price_"+i).value;
+    var Total =Quantity*Price;
+    var GST= document.getElementById("item_gst_"+i).value;
+    var GST_amount=(Total*GST)/100; 
+    var Grand_Total=Total+GST_amount;
+    document.getElementById("item_total_"+i).value =Grand_Total;
+    //alert(Grand_Total);
+  }
+</script>
+
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<form method='post' enctype="multipart/form-data" >
+    {% csrf_token %}
+           
+            <div id="main-header">
+                <h1 id="main-heading">Welcome to : Chal Charkha</h1>
+            </div>
+            <div class="card mb-4">
+                <div class="card-header">
+                    CREATE USER
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                              <label>User Name</label>
+                              <input type="text" class="form-control" Name=username placeholder="Enter User Name" required/>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" class="form-control"  name=firstname placeholder="Enter First Name" required/>
+                          </div>
+                      </div>
+                      
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label>Last Name</label>
+                          <input type="text" class="form-control"  name=lastname placeholder="Enter Last Name" required/>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                            <div class="form-group">
+                              <label>Mobile No.</label>
+                              <input type="text" class="form-control" placeholder="Enter Mobile No." required/>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                              <label>Email Id</label>
+                              <input type="text" class="form-control" Email Id="email" name="email" placeholder="Enter Email Id" required/>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label>Branch</label>
+                            <input type="text" class="form-control" placeholder="Enter Branch">
+                          </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label>Deparment</label>
+                          <input type="text" class="form-control"  placeholder="Enter Deparment">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label>Passward</label>
+                        <input type="text" class="form-control" name="password" Passward="password" placeholder="Enter Passward"required/>
+                      </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label> Confirm Passward</label>
+                      <input type="text" class="form-control" name="password1" placeholder="Enter Confirm Passward"required/>
+                    </div>
+                </div>
+                </div>
+            </div>
+          </div>
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+           
+</form>
+{% endblock %} 
+     

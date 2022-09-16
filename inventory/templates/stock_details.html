@@ -1,0 +1,314 @@
+{% extends 'base.html' %}
+{% block content %}
+<div id="page-header">
+  <h1 id="page-heading">STOCK DETAILS</h1>
+</div>
+<div id="main-header">
+  <h1 id="main-heading">Welcome to : Chal Charkha</h1>
+</div>
+<div id="toolbar">
+  <div class="btn-group me-auto" role="group" aria-label="Button group with nested dropdown">
+    <button type="button" class="btn btn-primary" id="searchsupplier1">SEARCH</button>
+  </div>
+  <div class="btn-group me-auto" role="group" aria-label="Button group with nested dropdown">
+    <a href="{% url 'stock-details-create' %}" class="btn btn-primary">+ ADD</a>
+  </div>
+  <div class="btn-group me-auto" role="group" aria-label="Button group with nested dropdown">
+    <button type="button" class="btn btn-primary" onclick="edit_action()">EDIT</button>
+  </div>
+  <div class="btn-group me-auto" role="group" aria-label="Button group with nested dropdown">
+    <button type="button" class="btn btn-primary" onclick="delete_action()">DELETE</button>
+  </div>
+</div>
+<div class="card mb-4" id="searchsupplierform1">
+  <div class="card-header">
+    Search Stock Details
+  </div>
+  <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'Searchvoucher' %}">
+    {% csrf_token %}
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Supplier Name</label>
+            <input type="text" class="form-control" id="customer-name" placeholder="Enter Supplier Name"
+              onkeyup='validateName()' name="Searchvouchername">
+            <span class='error-message' id='name-error'></span>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary" style="margin-top: 1%;" type="submit">Search</button>
+    </div>
+  </form>
+</div>
+<table class="table" id="tables">
+  <thead>
+    <tr>
+      <td><input type="radio" id="html" name="id" value="0" checked />
+      <td>Item Code</td>
+      <td>Category</td>
+      <td>No of Unit</td>
+      <td>Opening Stock</td>
+      <td>As of date</td>
+      <td>Purchase Price</td>
+      <td>HSN Code</td>
+      <td>GST Tax Rate</td>
+      <td>Remark</td>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <td><input type="radio" id="html" name="id" value="0" checked />
+    <td>ITM001</td>
+    <td>Category 1</td>
+    <td>50</td>
+    <td>100</td>
+    <td>150</td>
+    <td>36000</td>
+    <td>ABCD1234</td>
+    <td>18 %</td>
+    <td>Remark</td>
+  </tbody>
+
+</table>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+
+          {% if dataFinal.has_previous %}
+          <li class="page-item"><a class="page-link"
+              href="{% url 'voucher-list' %}?page={{dataFinal.previous_page_number}}">Previous</a></li>
+          {% endif %}
+          {% for i in paginator.page_range %}
+          <li class="page-item"><a class="page-link" href="{% url 'voucher-list' %}?page={{ i }}">{{i}}</a></li>
+          {% endfor %}
+          {% if dataFinal.has_next %}
+          <li class="page-item"><a class="page-link"
+              href="{% url 'voucher-list' %}?page={{dataFinal.next_page_number}}">Next</a>
+          </li>
+          {% endif %}
+
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <a href="{% url 'invoice' %}" class="btn btn-primary">Print File</a>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <button id="downlodexcel" class="btn btn-primary">Downlod Excel file</button>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <button id="btnExport" class="btn btn-primary">Downlod Pdf file</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      $("#button").click(function () {
+
+        if (confirm("are you sure you want to delete")) {
+          var arr_id = [];
+
+          $("input[type='radio']:checked").each(function (i) {
+            arr_id[i] = $(this).val();
+          })
+          if (arr_id.length == 0) {
+
+            alert("Please Select Your Item");
+          } else {
+            for (var i = 0; i < arr_id.length; i++) {
+
+              $("." + arr_id[i]).css({ "background": "red" });
+              $("." + arr_id[i]).fadeOut(".");
+
+            }
+          }
+
+        }
+        else {
+          return false;
+        }
+      })
+
+    })
+  </script>
+  <script>
+
+    function edit_action() {
+
+      var val = $("input[type='radio']:checked").val();
+      if (val == 0) {
+        alert("Please select item to edit ...")
+      } else {
+        window.location.replace("edit/" + val);
+      }
+    }
+
+    function delete_action() {
+
+      var val = $("input[type='radio']:checked").val();
+      if (val == 0) {
+        alert("Please select item to delete ...")
+      } else {
+        window.location.replace("delete/" + val);
+        alert("Want to delete? ...")
+
+      }
+    }
+
+  </script>
+  <script>
+    function validateName() {
+
+      var name = document.getElementById('customer-name').value;
+
+      if (name.length == 2) {
+
+        producePrompt('Name is required', 'name-error', 'red')
+        return false;
+
+      }
+
+      if (!name.match(/^[A-Za-z]*\s{0}/)) {
+
+        producePrompt('First and last name, please.', 'name-error', 'red');
+        return false;
+
+      }
+
+      producePrompt('Valid', 'name-error', 'green');
+      return true;
+
+    }
+
+    function validatePhone() {
+
+      var phone = document.getElementById('customer-phone').value;
+
+      if (phone.length == 0) {
+        producePrompt('Phone number is required.', 'phone-error', 'red');
+        return false;
+      }
+
+      if (phone.length != 10) {
+        producePrompt('Include area code.', 'phone-error', 'red');
+        return false;
+      }
+
+      if (!phone.match(/^[0-9]{10}$/)) {
+        producePrompt('Only digits, please.', 'phone-error', 'red');
+        return false;
+      }
+
+      producePrompt('Valid', 'phone-error', 'green');
+      return true;
+
+    }
+    function validateCode() {
+
+      var code = document.getElementById('customer-code').value;
+
+      if (code.length == 0) {
+        producePrompt(' Supplier code number is required.', 'code-error', 'red');
+        return false;
+      }
+
+      if (code.length != 5) {
+        producePrompt('Include area code.', 'code-error', 'red');
+        return false;
+      }
+
+      if (!code.match(/^[0-9]{5}$/)) {
+        producePrompt('Only digits, please.', 'code-error', 'red');
+        return false;
+      }
+      producePrompt('Valid', 'code-error', 'green');
+      return true;
+
+    }
+
+    function validateEmail() {
+
+      var email = document.getElementById('customer-email').value;
+
+      if (email.length == 0) {
+
+        producePrompt('Email Invalid', 'email-error', 'red');
+        return false;
+
+      }
+
+      if (!email.match(/^[A-Za-z\._\-[0-9][@][A-Za-z][\.][a-z]{2,4}$/)) {
+
+        producePrompt('Email Invalid', 'email-error', 'red');
+        return false;
+
+      }
+
+      producePrompt('Valid', 'email-error', 'green');
+      return true;
+
+    }
+    function validateForm() {
+      if (!validateName() || !validatePhone() || !validateEmail() || !validateCode() || !validateMessage()) {
+        jsShow('submit-error');
+        producePrompt('Please fix errors to submit.', 'submit-error', 'red');
+        setTimeout(function () { jsHide('submit-error'); }, 2000);
+        return false;
+      }
+      else {
+
+      }
+    }
+
+    function jsShow(id) {
+      document.getElementById(id).style.display = 'block';
+    }
+
+    function jsHide(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+
+
+    function producePrompt(message, promptLocation, color) {
+
+      document.getElementById(promptLocation).innerHTML = message;
+      document.getElementById(promptLocation).style.color = color;
+
+    }
+  </script>
+  <script>
+    document.getElementById('downlodexcel').addEventListener('click', function () {
+      var table2excel = new Table2Excel();
+      table2excel.export(document.querySelectorAll('#tables'));
+    });
+  </script>
+  <script type="text/javascript">
+    $("body").on("click", "#btnExport", function () {
+      html2canvas($('#tables')[0], {
+        onrendered: function (canvas) {
+          var data = canvas.toDataURL();
+          var docDefinition = {
+            content: [{
+              image: data,
+              width: 500
+            }]
+          };
+          pdfMake.createPdf(docDefinition).download("customer-details.pdf");
+        }
+      });
+    });
+  </script>
+  {% endblock %}

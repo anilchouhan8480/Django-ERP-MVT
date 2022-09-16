@@ -1,0 +1,245 @@
+{% load static %}
+  <html lang="en" dir="ltr">
+<head>
+    
+    <title></title>
+    <!----<script src="https://kit.fontawesome.com/bc5fb07b3b.js" crossorigin="anonymous"></script>--->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+       
+</head>
+<body>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+    
+    
+    * {
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    body {
+      background: #faf9b6;
+    }
+    
+    
+    
+    .wrapper {
+      max-width: 350px;
+      min-height: 500px;
+      margin: 80px auto;
+      padding: 40px 30px 30px 30px;
+      background-color: #fbfbe1;
+      border-radius: 15px;
+      
+    }
+    
+    .logo {
+      width: 90px;
+      margin: auto;
+    }
+    
+    .logo img {
+      width: 100%;
+      height: 75px;
+      object-fit: cover;
+      border-radius: 100%;
+     
+    }
+    
+    .wrapper .btn {
+      box-shadow: none;
+      width: 100%;
+      height: 40px;
+      background-color: #653D3E;
+      color: #fff;
+      border-width: 2px;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+      border: none;
+    }
+    
+    .btn:hover {
+      background-color: #039BE5;
+      color: black;
+      font-weight: bold;
+    }
+    
+    .wrapper a {
+      text-decoration: none;
+      font-size: 0.8rem;
+      color: #653D3E;
+    }
+    
+    .wrapper a:hover {
+      color: #039BE5;
+    }
+    
+    @media(max-width: 380px) {
+      .wrapper {
+        margin: 30px 20px;
+        padding: 40px 15px 15px 15px;
+      }
+    }
+    
+    
+    
+    .spinner {
+      position: absolute;
+      top: 90%;
+      left: 50%;
+      margin-top: -20px;
+      margin-left: -25px;
+      width: 50px;
+      height: 40px;
+      text-align: center;
+      font-size: 10px;
+      position: fixed;
+    }
+    
+    
+    
+    .btn {
+      background: #653D3E;
+      border-color: #653D3E;
+      color: #FFFFFF;
+    
+    }
+    
+    .card {
+      width: 50%;
+      height: 50vh;
+      margin-top: 7rem;
+      border-radius: 2rem;
+      padding: 2rem;
+      background-color: #faf9b6;
+     
+      display: flex;
+      justify-content: center;
+      background-repeat: no-repeat;
+      background-position: center;
+     
+    
+    }
+    
+    .form-group {
+      margin-bottom: 10px;
+    }
+    
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="date"] {
+      width: 100%;
+      height: 35px;
+      padding: 5px;
+      border-color: #653D3E;
+      border-width: 2px;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+    
+    
+    
+    .main {
+      width: 100vw;
+      position: relative;
+      top: 0;
+      left: 0;
+    
+      backdrop-filter: blur(5px);
+      height: 100vh;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    
+   
+      </style>
+  <div class="main">
+    
+      <form method="post">
+        {% csrf_token %}
+      
+        <div class="wrapper " id="logincard1">
+         <div class="logo">
+            <img src="{% static '/theme/img/logo.png' %}" width="20px"
+            height="20px">
+          </div>
+          <h2 class="text-center">Welcome to Chal-Charkha</h2>
+          <form method="post">
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+              {% for error in  form.non_field_errors %}
+                {{error}}
+              {% endfor %}
+            {% endif %}
+            <div class="form-outline mb-4">
+              <label class="form-label" for="form2Example1">User Name</label>
+              <input type="text" name="username"  class="form-control" placeholder="Enter Your username" />
+            </div>
+            <div class="form-outline mb-4">
+              <label class="form-label" for="form2Example2">Password</label>
+              <input type="password" name="password"  class="form-control" placeholder="Enter Your Password" />
+            </div>
+            <div class="row mb-4">
+              <div class="col d-flex justify-content-center">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
+                  <label class="form-check-label" for="form2Example31"> Remember me </label>
+                </div>
+              </div>
+              <div class="col">
+                <a href="#!">Forgot password?</a>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary  mb-4">Login</button>
+          
+
+            
+
+          
+        </div>
+      
+    
+  </div>
+</form>
+
+</section>
+<footer id="footer"></footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+    <script type="text/javascript">  
+ 
+ function getelement(id) {
+    return document.getElementById(id)
+}
+    const loading = getelement('loader1')
+console.log(loading)
+
+setTimeout(() => {
+    console.log(loading.hidden)
+    loading.hidden = true
+    loading.style.display = 'none'
+    overlay.hidden = true
+    card12.hidden = true
+    wrapper.hidden = false
+    spinner.hidden = true
+    loader.hidden = true
+}, 2600);
+
+const overlay = getelement('overlay1')
+console.log(overlay)
+const card12 = getelement('card12')
+console.log(card12)
+const wrapper = getelement('logincard1')
+console.log(wrapper)
+const spinner = getelement('spinner1')
+console.log(spinner)
+const loader = getelement('loader12')
+console.log(loader)
+  </script>
+</body>
+
+</html>

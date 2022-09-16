@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<form method='post' enctype="multipart/form-data" onsubmit="alert('Created Successfully');">
+  {% csrf_token %}
+  <div id="page-header">
+    <h1 id="page-heading"> EDIT ITEM</h1>
+  </div>
+  <div id="main-header">
+    <h1 id="main-heading">Welcome to : Chal Charkha</h1>
+  </div>
+  <div class="card mb-4">
+    <div class="card-header">
+      Edit Item Master
+    </div>
+    <div class="card-body">
+      {% if error1 %}
+      <div class="alert alert-danger" role="alert">
+        {{error1}}
+      </div>
+      {% endif %}
+      <div class="row">
+        <div class="col-md-6" style="border-right:1px solid  #653D3E;">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-8">
+                <div class="form-group">
+                  {{form.Item_Name | as_crispy_field}}
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  {{form.Color | as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  {{form.Item_Size | as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  {{form.Item_PCS | as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  {{form.Item_Pirce | as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="form-group">
+                  {{form.Item_Description | as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  {{form.Item_GST | as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>HSN Code</label>
+                  <input type="text" class="form-control" id="HSN_Code" />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  {{form.UOM | as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  {{form.Item_Remark | as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="form-group">
+                  {{form.Item_Category | as_crispy_field}}
+                </div>
+              </div>
+
+              <div class="col-md-5">
+                <div class="form-group">
+                  {{ form.Created_By | as_crispy_field}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-10">
+                <div class="form-group">
+                  <label>Item Images</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.Item_Image | as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.Item_Image_2 | as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.Item_Image_3 | as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.Item_Image_4 | as_crispy_field}}
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="col-md-4">
+    <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+  </div>
+</form>
+<script>
+  $("#id_Item_Category").change(function (e) {
+    // e.preventDefault();
+    var Item_Category_id = document.getElementById("id_Item_Category").value;
+    // alert(supplier_id);
+    $.ajax({
+      type: "GET",
+      dataType: "json",
+      data: { Item_Category_id: Item_Category_id },
+      url: "http://127.0.0.1:8000/api/Categoryapi/" + Item_Category_id,
+      success: function (result) {
+        console.log(result);
+        document.getElementById("HSN_Code").value = result.HSN_Code;
+      }
+    });
+  });
+</script>
+{% endblock %}

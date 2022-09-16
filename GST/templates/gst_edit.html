@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<form method='post' enctype="multipart/form-data" onsubmit="alert('Updated Successfully');" >
+    {% csrf_token %}
+        <div id="page-header">
+            <h1 id="page-heading">GST </h1>
+        </div>
+        <div id="main-header">
+            <h1 id="main-heading">Welcome to : Chal Charkha</h1>
+        </div>
+        <div class="card mb-4">
+            <div class="card-header">
+               EDIT GST
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            {{form.Gst | as_crispy_field}}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            {{form.Description | as_crispy_field}}
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            {{ form.Created_By | as_crispy_field}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+        </div>
+    </form>
+    {% endblock %}

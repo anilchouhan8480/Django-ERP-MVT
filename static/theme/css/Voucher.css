@@ -1,0 +1,104 @@
+@font-face {
+    font-family: hindi;
+    src: url(../css/Voucher/krutidev-010-hindi-font-download.ttf);
+}
+
+.voucher {
+    font-family: hindi;
+    font-weight: lighter;
+}
+
+.voucher {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+
+}
+
+.voucher header {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    padding: 0rem;
+    line-height: 0rem;
+
+}
+
+.voucher header h1 {
+    font-size: 5rem;
+    text-align: center;
+}
+
+.voucher header h2 {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.voucher .header2 h3 {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+h4 {
+    font-size: 1.5rem;
+    text-align: right;
+}
+
+.voucher .header2 h5 {
+    width: 20%;
+    padding: 1rem 0rem 1rem 0rem;
+    font-size: 2rem;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    text-align: center;
+}
+
+.voucher .header2 {
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    gap: 26.6%;
+    justify-content: center;
+    align-items: center;
+    line-height: 0rem;
+    padding: 0rem;
+}
+
+
+
+body table {
+    border-collapse: collapse;
+}
+
+table .mukhya input{
+    width: 35rem;
+}
+
+table .prati input{
+   text-align: start;   
+    width: 38rem;
+    height: 2rem;
+}
+
+table .bill input{
+    width: 16.3rem;
+}
+
+table .vivran input{
+    width: 37rem;
+}
+
+table .vivran2 input{
+    width: 40rem;
+}
+
+table .Rupees input{
+    width: 36rem;
+}
+
+table .rashi {
+background-color: rgb(167, 155, 155);
+text-align: center;
+}

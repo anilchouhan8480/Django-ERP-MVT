@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div id="page-header">
+  <h1 id="page-heading">STOCK DETAILS </h1>
+</div>
+<div id="main-header">
+  <h1 id="main-heading">Welcome to : Chal Charkha</h1>
+</div>
+<div class="card mb-4">
+  <div class="card-header">
+    STOCK DETAILS
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-2">
+        <div class="form-group">
+          <label>Item Code</label>
+          <input type="text" class="form-control" id="exampleInputremark1" aria-describedby="emailHelp" placeholder="">
+          <small id="emailHelp" class="form-text text-muted"></small>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <label>Category</label>
+          <select class="form-select" aria-label="Default select example">
+            <option selected="">Category</option>
+            <option value="1">Item 1</option>
+            <option value="2">Item 2</option>
+            <option value="3">Item 3</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <label>No. of Units</label>
+          <select class="form-select" aria-label="Default select example">
+            <option selected="">Unit of Measure</option>
+            <option value="1">Kg</option>
+            <option value="2">I</option>
+            <option value="3">gross</option>
+            <option value="3">m</option>
+            <option value="3">gm</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <label>Opening of Stock</label>
+          <input type="text" class="form-control" id="exampleInputsupplername1" aria-describedby="emailHelp">
+          <small id="emailHelp" class="form-text text-muted"></small>
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <div class="form-group">
+          <label>Date</label>
+          <input type="date" class="form-control" id="exampleInputhescription1" aria-describedby="emailHelp">
+          <small id="emailHelp" class="form-text text-muted"></small>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <label>Sales Price</label>
+          <input type="text" class="form-control" id="exampleInputsupplername1" aria-describedby="emailHelp">
+          <small id="emailHelp" class="form-text text-muted"></small>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <label>Purchase Price</label>
+          <input type="text" class="form-control" id="exampleInputsupplername1" aria-describedby="emailHelp">
+          <small id="emailHelp" class="form-text text-muted"></small>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <label>HSN Code</label>
+          <select class="form-select" aria-label="Default select example">
+            <option selected="">HSN Code</option>
+            <option value="1">Item 1</option>
+            <option value="2">Item 2</option>
+            <option value="3">Item 3</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <label>GST Tax Rates</label>
+          <select class="form-select" aria-label="Default select example">
+            <option selected="">GST Tax Rate</option>
+            <option value="1">0%</option>
+            <option value="2">10%</option>
+            <option value="3">15%</option>
+            <option value="3">Exempted</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label>Remark</label>
+          <input type="text" class="form-control" id="exampleInputsupplername1" aria-describedby="emailHelp">
+          <small id="emailHelp" class="form-text text-muted"></small>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="col-md-2">
+  <button class="btn btn-primary" type="submit">Submit</button>
+</div>
+
+{% endblock %}

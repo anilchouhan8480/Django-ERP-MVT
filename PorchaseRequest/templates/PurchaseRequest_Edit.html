@@ -1,0 +1,351 @@
+{% extends 'base.html' %}
+{% block content %}
+            <form method="POST" id="form_data">
+      {% csrf_token %}
+        <div id="page-header">
+            <h1 id="page-heading">PURCHASE REQUEST</h1>
+        </div>
+        <div id="main-header">
+            <h1 id="main-heading">Welcome to : Chal Charkha</h1>
+        </div>
+        <div class="card mb-4">
+            <div class="card-header">
+                EDIT PURCHASE REQUEST DETAILS
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>PR No</label>
+                            <input type="text" name="po_no" class="form-control" id="exampleInputsupplername1" value="{{pObj.PO_No}}"
+                                aria-describedby="emailHelp" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Supplier Name</label>
+                            <input type="text" class="form-control" id="exampleInputdescription1" name="sup_name" value="{{pObj.Supplier_Code.Name}}"
+                                aria-describedby="emailHelp" placeholder="Enter Supplier Code" readonly >
+                        </div>
+                    </div>
+                    <div class="col-md-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <div class="form-group">
+                            <label>Supplier Code</label>
+                            <input type="text" class="form-control" id="exampleInputdescription1" value="{{pObj.Supplier_Code.Supplier_Code}}"
+                                aria-describedby="emailHelp" placeholder="Enter Supplier Code" readonly>
+                            <small id="emailHelp" class="form-text text-muted"></small>
+                        </div>
+                    </div>
+
+                                        <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Contact No</label>
+                            <input type="text" name="sup_contact" class="form-control" id="exampleInputsupplername1" value="{{pObj.Supplier_Code.Mobile_NO}}"
+                                aria-describedby="emailHelp" readonly>
+                            <small id="emailHelp" class="form-text text-muted"></small>
+                        </div>
+                    </div> 
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Status</label>
+                    <input type="text" name="po_status" class="form-control" id="exampleInputsupplername1" value="{{pObj.PO_Status}}"
+                                aria-describedby="emailHelp" placeholder="Enter Loaction">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Location</label>
+                            <input type="text" name="location" class="form-control" id="exampleInputsupplername1" value="{{pObj.Location}}"
+                                aria-describedby="emailHelp" placeholder="Enter Loaction">
+                            <small id="emailHelp" class="form-text text-muted"></small>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Delivery Date</label>
+                            <input type="text" name="delivery_date" class="form-control" id="exampleInputsupplername1" value="{{pObj.Expected_Arrival_date}}"
+                                aria-describedby="emailHelp">
+                            <small id="emailHelp" class="form-text text-muted"></small>
+                        </div>
+                    </div>
+                   <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel"></h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>PO No</label>
+                                                    <input type="text" class="form-control" id="exampleInputEmail1"
+                                                        aria-describedby="emailHelp" placeholder="Enter PO No">
+                                                    <small id="emailHelp" class="form-text text-muted"></small>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Supplier Code</label>
+                                                    <input type="text" class="form-control" id="exampleInputEmail1"
+                                                        aria-describedby="emailHelp" placeholder="Enter Code">
+                                                    <small id="emailHelp" class="form-text text-muted"></small>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Supplier Name</label>
+                                                    <select class="form-select" aria-label="Default select example">
+                                                        <option selected>Supplier</option>
+                                                        <option value="1">Supplier-name1</option>
+                                                        <option value="2">Supplier-name2</option>
+                                                        <option value="3">Supplier-name3</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Search</button>
+                                    <button type="button" class="btn btn-primary">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Description</label>
+                            <input type="text" name="sup_desc" class="form-control" id="exampleInputdescription1" value="{{pObj.Description}}"
+                                aria-describedby="emailHelp" placeholder="Enter Description">
+                            <small id="emailHelp" class="form-text text-muted"></small>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Remark</label>
+                            <input type="text" name="remark" class="form-control" id="exampleInputremark1" value="{{ pObj.Remark}}"
+                                aria-describedby="emailHelp" placeholder="Enter Remark">
+                            <small id="emailHelp" class="form-text text-muted"></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+      <div class="card mb-4">
+        <div class="card-header">
+          ITEM DETAILS
+        </div>
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">PR Item</th>
+                <th scope="col">Item Code</th>
+                <th scope="col">Item Name</th>
+                <th scope="col">Item Size </th>
+                <th scope="col">Item Color</th>
+                <th scope="col">Item Quantity</th>
+                <th scope="col">Item Price</th>
+                <th scope="col">Total</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody id="addItem1">
+                {% for j in p %}
+              <tr >
+                <th>
+                <select name="item_select"  conchange="getdropdown(event.target.value)" class="form-select auto_increment item_select"
+                    aria-label="Default select example" id="cmb_item_0" >
+            <option selected>Items</option>
+            {% for j in IObj  %}
+            <option  value="{{ j.Item_NO }}" >{{ j.Item_Name}}</option>
+            {% endfor %}
+          </select>
+
+                  <input type="hidden" name="Puchase_request_meterial_id[]" class="form-control mb-2 item_po"  value="{{j.PR_meterial_id}}"/>
+                </th>
+                <th><input type="text" name="item_code[]" class="form-control mb-2 item_code"  value="{{j.Item_id.Item_NO}}"/>
+                </th>
+                <th><input type="text" name="item_name[]" class="form-control mb-2 item_name"  value="{{j.Item_id.Item_Name}}"/>
+                </th>
+                <th>
+                  <input type="text" name="item_size[]" class="form-control mb-2 item_size"  value="{{j.Item_id.Item_Size}}"/>
+                </th>
+                <th><input type="text" name="item_color[]" class="form-control mb-2 item_color"  value="{{j.Item_id.Color.Color_Name}}"/></th>
+                <th><input type="number" name="item_qty[]" class="form-control mb-2 item_qty"  value="{{j.Item_quantity}}"/></th>
+                <th>
+                    <input type="number" name="item_price[]" class="form-control mb-2 item_price" 
+                    id="exampleInputEmail1" value="{{j.Item_basePrice}}"/></th>
+                <th ><input type="number" name="item_total[]" class="form-control mb-2 item_total" value="{{j.Total_Amount}}"
+                   /></th>
+
+                <th>
+                  <button type="button" class="btn-close" aria-label="Close"></button>
+                </th>
+              </tr>
+
+              {% endfor %}
+
+
+              <tr id="increment">
+              </tr>
+            </tbody>
+          </table>
+          <div class="col-md-1">
+            <div class="form-group">
+              <button type="button" class="btn btn-primary" onclick="addItem()">Add Item</button>
+            </div>
+          </div>
+        </div>
+      </div>
+              <button onclick="onsubmitdata()" type="submit" class="btn btn-primary">Submit</button>
+      </form>
+<script type="text/javascript">
+
+
+    
+    var i = 1;
+
+    function onsubmitdata(){
+    var item_select = $('input[name^=item_select]').map(function(idx, elem) {return $(elem).val();}).get();
+    var item_code = $('input[name^=item_code]').map(function(idx, elem) {return $(elem).val();}).get();
+    var item_name = $('input[name^=item_name]').map(function(idx, elem) {return $(elem).val();}).get();
+    var item_size = $('input[name^=item_size]').map(function(idx, elem) {return $(elem).val();}).get();
+    var item_color = $('input[name^=item_color]').map(function(idx, elem) {return $(elem).val();}).get();
+    var item_qty = $('input[name^=item_qty]').map(function(idx, elem) {return $(elem).val();}).get();
+    var item_price = $('input[name^=item_price]').map(function(idx, elem) {return $(elem).val();}).get();
+    var item_total = $('input[name^=item_total]').map(function(idx, elem) {return $(elem).val();}).get();
+
+  console.log(item_select,"item_select");
+  console.log(item_code,"item_code");
+  console.log(item_name,"item_name");
+  console.log(item_size,"item_size");
+  console.log(item_color,"item_color");
+  console.log(item_qty,"item_qty");
+  console.log(item_price,"item_price");
+  console.log(item_total,"item_total");
+
+    }
+
+
+    function addItem() {
+      let template = `<tr>
+        <th>
+          <select name="item_select[]" onchange="change_func(${i},event.target.value)" class="form-select auto_increment item_select" aria-label="Default select example" id="cmb_item_${i}" >
+            <option selected>Select Item</option>
+            {% for j in IObj  %}
+            <option  value="{{ j.Item_NO }}">{{ j.Item_Name}}</option>
+            {% endfor %}
+          </select>
+                  <input type="hidden" name="purchase_order_material_id[]" class="form-control mb-2 item_po"  value="-1"/>
+
+        </th>
+
+        <th>
+          <input 
+            type="text" name="item_code[]" 
+            class="form-control mb-2 item_code" 
+            id="item_code_${i}"/>
+        </th>
+        <th>
+          <input 
+            type="text" name="item_name[]"
+            class="form-control mb-2 item_name" 
+            id="item_Name_${i}"/>
+        </th>
+        <th>
+          <input 
+            type="text" name="item_size[]"
+            class="form-control mb-2 item_size" 
+            id="item_size_${i}"/>
+        </th>
+        <th>
+          <input 
+            type="text" name="item_color[]"
+            class="form-control mb-2 item_color" 
+            id="item_color_${i}"/>
+        </th>
+        <th>
+          <input 
+            type="text" name="item_qty[]"
+            class="form-control mb-2 item_qty" 
+            id="item_qty_${i}" required/>
+        </th>
+        <th>
+          <input 
+            type="text" 
+            name="item_price[]" 
+            class="form-control mb-2 item_price" 
+            id="item_price_${i}" required/>
+        </th>
+        <th>
+          <input 
+            type="text" 
+            name="item_total[]" 
+            class="form-control mb-2 item_total" 
+            id="item_total_${i}" />
+        </th>
+        <th>
+          <button class="btn-close" aria-label="Close"></button>
+        </th>
+      </tr>`;
+
+    $('#increment').after(template);
+
+      i++;
+  }
+
+function change_func(id,itemid){
+
+      $.ajax({
+
+        type: "GET",
+        dataType: "json",
+        url: "http://127.0.0.1:8000/api/itemapi/" + itemid,
+        success: function (result) {
+          console.log(result);
+
+
+          document.getElementById("item_code_" + id).value = result.Item_NO;
+          document.getElementById("item_Name_" + id).value = result.Item_Name;
+          document.getElementById("item_size_" + id).value = result.Item_Size;
+          document.getElementById("item_color_" + id).value = result.color_name;
+          //document.getElementById("item_qty_" + id).value = result.Item_PCS;
+        }
+      });
+
+      function getdropdown(id){
+         $.ajax({
+
+        type: "GET",
+        dataType: "json",
+        url: "http://127.0.0.1:8000/api/itemapi/" + itemid,
+        success: function (result) {
+          console.log(result);
+
+
+          document.getElementById("item_code_" + id).value = result.Item_NO;
+          document.getElementById("item_Name_" + id).value = result.Item_Name;
+          document.getElementById("item_size_" + id).value = result.Item_Size;
+          document.getElementById("item_color_" + id).value = result.Item_Colour;
+          //document.getElementById("item_qty_" + id).value = result.Item_PCS;
+        }
+      });
+
+      }
+  
+
+    // alert(itemid);
+}
+
+</script>
+{% endblock %}

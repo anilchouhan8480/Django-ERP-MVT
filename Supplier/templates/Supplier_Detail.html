@@ -1,0 +1,210 @@
+{% extends 'base.html' %}
+{% block content %}
+<div id="page-header">
+  <h1 id="page-heading"> SUPPLIER DETAILS</h1>
+</div>
+<div id="main-header">
+  <h1 id="main-heading">Welcome to : Chal Charkha</h1>
+</div>
+<nav>
+  <div class="nav nav-tab" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="nav-About-tab" data-bs-toggle="tab" data-bs-target="#nav-About" type="button"
+      role="tab" aria-controls="nav-About" aria-selected="true">Profile</button>
+    <button class="nav-link" id="Purchase-order-tab" data-bs-toggle="tab" data-bs-target="#Purchase-order" type="button"
+      role="tab" aria-controls="Purchase-order" aria-selected="false">Purchase Order</button>
+    <button class="nav-link " id="ledger-tab" data-bs-toggle="tab" data-bs-target="#ledger" type="button" role="tab"
+      aria-controls="ledger" aria-selected="false">Ledger</button>
+  </div>
+</nav>
+<div class="card mt-4 tab-content" id="nav-tabcontent">
+  <div class="tab-pane fade show active p-3" id="nav-About" role="tabpanel"
+   aria-labelledby="nav-About-tab">
+    <div class="card-body">
+      <div class="col">
+        <div class="form-group">
+          <p> Supplier Code: <span>{{data_supplier.Supplier_Code}}</span></p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <p> Supplier Name : <span>{{data_supplier.Name}}</span></p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <p> Email ID: <span>{{data_supplier.Email}}</span></p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <p>Mobile No: <span>{{data_supplier.Mobile_NO}}</span></p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <p> GSTIN NO. : <span>{{data_supplier.GSTIN}}</span></p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <p> Place of Supply : <span>{{data_supplier.Place_Of_Supply}}</span></p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <p> Billing Address : <span>{{data_supplier.Street_h_n}}
+              {{data_supplier.City}}
+              {{data_supplier.state}}
+              {{data_supplier.postalcode}}
+              {{data_supplier.country.name}}
+            </span></p>
+        </div>
+      </div>
+    </div>
+    <nav>
+   
+    </nav>
+  </div>
+    <div class="tab-pane fade p-3" id="Purchase-order" 
+    role="tabpanel" aria-labelledby="Purchase-order-tab">
+      <div class="card mb-4">
+        <div class="card-header">
+          PURCHASE-ORDER DETAILS
+        </div>
+        <div class="row-table">
+          <table class="table">
+            <thead>
+              <tr>
+                <td>PO No</td>
+                <td>PO Item</td>
+                <td>PR Order</td>
+                <td>PO LineItem</td>
+                <td>PO Date</td>
+                <td>Changed Date</td>
+                <td>Changed Time</td>
+                <td>Changed By</td>
+                <td>PO Status</td>
+                <td>PO Discription</td>
+                <td>PO Location</td>
+                <td>Delivery Date</td>
+                <td>Supplier Code</td>
+                <td>Mobile No</td>
+                <td>Billing Address</td>
+                <td>Billing Pincode</td>
+                <td> Supply Place</td>
+                <td>Item Code</td>
+                <td>Item Name</td>
+                <td>Item Size</td>
+                <td>Item Color</td>
+                <td>HSN/ SAC</td>
+                <td>Unit Of Measure</td>
+                <td>Quantity</td>
+                <td>Base Price</td>
+                <td>Discount</td>
+                <td>GST</td>
+                <td>GST %</td>
+                <td>Total Amount</td>
+                <td>Company-Title</td>
+                <td>Name</td>
+                <td>Street/House</td>
+                <td>City</td>
+                <td>Postal Code</td>
+                <td>Country</td>
+                <td>Invoice No</td>
+                <td>Invoice LineItem</td>
+                <td>Purchase Invoice</td>
+                <td>Date</td>
+                <td>Payment Term</td>
+                <td>Remark</td>
+              </tr>
+            </thead>
+            {% for i in data %}
+            <tbody>
+              <tr>
+                <td>{{i.Purchase_order.PO_No}}</td>
+                <td>{{i.Item_id.Item_Name}}</td>
+                <td>{{i.Purchase_order.PR_No}}</td>
+                <td></td>
+                <td> {{i.Purchase_order.Created_At}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{i.Purchase_order.PO_Status}}</td>
+                <td>{{i.Purchase_order.Description}}</td>
+                <td>{{i.Purchase_order.Location}}</td>
+                <td>{{i.Purchase_order.Expected_Arrival_date}}</td>
+                <td>{{i.Purchase_order.Supplier_Code.Supplier_Code}}</td>
+                <td>{{i.Purchase_order.Supplier_Code.Mobile_NO}}</td>
+                <td>{{i.Purchase_order.Supplier_Code.City}}</td>
+                <td>{{i.Purchase_order.Supplier_Code.postalcode}}</td>
+                <td>{{i.Purchase_order.Supplier_Code.state}}</td>
+                <td>{{i.Item_id.Item_NO}}</td>
+                <td>{{i.Item_id.Item_Name}}</td>
+                <td>{{i.Item_id.Item_Size}}</td>
+                <td>{{i.Item_id.Color}}</td>
+                <td>{{i.Item_id.Item_Category_id.HSN_Code}}</td>
+                <td></td>
+                <td>{{i.Item_quantity}}</td>
+                <td>{{i.Item_basePrice}}</td>
+                <td></td>
+                <td></td>
+                <td>{{i.Item_id.Item_GST}}</td>
+                <td>{{i.Total_Amount}}</td>
+                <td>{{i.Purchase_order.Supplier_Code.title}}</td>
+                <td>{{i.Purchase_order.Supplier_Code.Name}}</td>
+                <td>{{i.Purchase_order.Supplier_Code.Street_h_n}}</td>
+                <td>{{i.Purchase_order.Supplier_Code.City}}</td>
+                <td>{{i.Purchase_order.Supplier_Code.postalcode}}</td>
+                <td>{{i.Purchase_order.Supplier_Code.country}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{i.Purchase_order.Supplier_Code.Remark}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane fade p-3" id="ledger" role="tabpanel" aria-labelledby="ledger-tab">
+      <div class="card mb-4">
+        <div class="card-header">
+          LEDGER DETAILS
+        </div>
+        <div class="row-table">
+          <table class="table">
+            <thead>
+              <tr>
+                <td>Party</td>
+                <td>Particular</td>
+                <td>Date</td>
+                <td>Voucher No.</td>
+                <td>Credit</td>
+                <td>Debit</td>
+                <td>Balance</td>
+                <td>Remark</td>
+              </tr>
+            </thead>
+            {% for j in data_ledger %}
+            <tbody>
+              <tr>
+                <td>{{j.Supplier_Name.Name}}</td>
+                <td>{{j.description}}</td>
+                <td>{{j.payment_date}}</td>
+                <td>{{j.Payment_Voucher_NO}}</td>
+                <td>{{j.Payment_amount}}</td>
+                <td></td>
+                <td></td>
+                <td>{{j.Remark}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}

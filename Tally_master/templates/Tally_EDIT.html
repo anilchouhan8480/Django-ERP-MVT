@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<form method='post' enctype="multipart/form-data" onsubmit="alert('Created Successfully');">
+    {% csrf_token %}
+   
+    <div id="page-header">
+        <h1 id="page-heading">Tally Master </h1>
+    </div>
+    <div id="main-header">
+        <h1 id="main-heading">Welcome to : Chal Charkha</h1>
+    </div>
+    <div class="card mb-4">
+        <div class="card-header">
+            Edit Tally MASTER
+        </div>
+        <div class="card-body">
+            {% if error1 %}
+            <div class="alert alert-danger" role="alert">
+                {{error1}}
+            </div>
+            {% endif %}
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        {{form.Data_Name | as_crispy_field}}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        {{form.Transection_No | as_crispy_field}}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        {{form.Remark | as_crispy_field}}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        {{ form.Created_By | as_crispy_field }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <button type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">Submit</button>
+    </div>
+</form>
+{% endblock %}

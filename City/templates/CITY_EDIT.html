@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<form method='post' enctype="multipart/form-data" onsubmit="alert('Updated Successfully');">
+  {% csrf_token %}
+  <div id="page-header">
+    <h1 id="page-heading">City Master </h1>
+  </div>
+  <div id="main-header">
+    <h1 id="main-heading">Welcome to : Chal Charkha</h1>
+  </div>
+  <div class="card mb-4">
+    <div class="card-header">
+      Edit City Master
+    </div>
+    <div class="card-body">
+      {% if error1 %}
+      <div class="alert alert-danger" role="alert">
+        {{error1}}
+      </div>
+      {% endif %}
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            {{form.City_Name | as_crispy_field}}
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            {{form.Remark | as_crispy_field}}
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            {{ form.Created_By | as_crispy_field }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+
+  </div>
+
+</form>
+{% endblock %}

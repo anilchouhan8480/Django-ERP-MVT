@@ -1,0 +1,13 @@
+.noPrint
+{
+    display: none;
+}
+#navigation
+{
+  display:none;
+}
+#container
+{
+  margin-left: 0px;
+  border-radius: 0px;
+}

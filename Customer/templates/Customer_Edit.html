@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<form method='post' enctype="multipart/form-data" onsubmit="alert('Updated Successfully');">
+    {% csrf_token %}
+            <div id="page-header">
+                <h1 id="page-heading">EDIT CUSTOMER</h1>
+            </div>
+            <div id="main-header">
+                <h1 id="main-heading">Welcome to : Chal Charkha</h1>
+            </div>
+            <div class="card mb-4">
+                <div class="card-header">
+                    EDIT CUSTOMER MASTER
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          {{form.Customer_Code_Display | as_crispy_field}}
+                        </div>
+                    </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                              {{form.Name | as_crispy_field}}
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                              {{form.Email | as_crispy_field}}
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                              {{form.Mobile_NO | as_crispy_field}}
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                              {{form.GSTIN | as_crispy_field}}
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                              {{form.Place_Of_Supply | as_crispy_field}}
+                            </div>
+                        </div>
+
+                        <br></br>
+                        <label >Billing Address</label>
+                        <br></br>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            {{form.title | as_crispy_field}}
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            {{form.Billing_Name | as_crispy_field}}
+                          </div>
+                      </div>
+                      
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          {{form.Street_h_n | as_crispy_field}}
+                        </div>
+                    </div>
+                        
+                          <div class="col-md-2">
+                            <div class="form-group">
+                              {{form.City | as_crispy_field}}
+                            </div>
+                          </div>
+                          <div class="col-md-2">
+                            <div class="form-group">
+                              {{form.state | as_crispy_field}}
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="form-group">
+                              {{form.country | as_crispy_field}}
+                              
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="form-group">
+                              {{form.postalcode | as_crispy_field}}
+                              
+                            </div>
+                        </div>
+                        <br></br>
+                        <label><input type="checkbox" id="scales" name="scales" checked /> Shipping Address</label>
+                        <br></br>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            {{form.title_ship | as_crispy_field}}
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            {{form.Name_shipping | as_crispy_field}}
+                          </div>
+                      </div>
+                      
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          {{form.Street_h_n_ship | as_crispy_field}}
+                        </div>
+                    </div>
+                        
+                          <div class="col-md-2">
+                            <div class="form-group">
+                              {{form.City_ship | as_crispy_field}}
+                            </div>
+                          </div>
+                          <div class="col-md-2">
+                            <div class="form-group">
+                              {{form.state_ship | as_crispy_field}}
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="form-group">
+                              {{form.country_ship | as_crispy_field}}
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="form-group">
+                              {{form.postalcode_ship | as_crispy_field}}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                              {{form.Remark | as_crispy_field}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+            </div>
+</form>
+{% endblock %} 
+     
